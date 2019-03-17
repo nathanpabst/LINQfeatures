@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LINQfeatures
 {
@@ -22,6 +23,13 @@ namespace LINQfeatures
             {
                 Console.WriteLine(person.Name);
             }
+
+            //alternate method without LINQ extension methods to iterate through the collection & print names
+            //IEnumerator<Employee> enumerator = developers.GetEnumerator();
+            //while (enumerator.MoveNext())
+            //{
+            //    Console.WriteLine(enumerator.Current.Name);
+            //}
 
             Console.ReadLine();
         }
