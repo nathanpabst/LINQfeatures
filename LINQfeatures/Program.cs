@@ -19,21 +19,37 @@ namespace LINQfeatures
                 new Employee { Id = 3, Name = "Alex" }
             };
 
-            Console.WriteLine(developers.Count());
+            // 1) calling NameStartsWithA ..NAMED method
+            //foreach (var employee in sales.Where(NameStartsWithA))
+            //{
+            //    Console.WriteLine(employee.Name);
+            //}
 
-            foreach (var person in developers)
+            // 2) ANONYMOUS method example
+            //foreach (var employee in developers.Where(
+            //    delegate (Employee employee)
+            //    {
+            //        return employee.Name.StartsWith("N");
+            //    }))
+            //{
+            //    Console.WriteLine(employee.Name);
+            //}
+
+            // 3) LAMBDA expression syntax
+            foreach (var employee in developers.Where(
+                        e => e.Name.StartsWith("N")))
             {
-                Console.WriteLine(person.Name);
+                Console.WriteLine(employee.Name);
             }
 
-            //alternate method without LINQ extension methods to iterate through the collection & print names
-            //IEnumerator<Employee> enumerator = developers.GetEnumerator();
-            //while (enumerator.MoveNext())
-            //{
-            //    Console.WriteLine(enumerator.Current.Name);
-            //}
+            
 
             Console.ReadLine();
         }
+        // 1) example of named method. called in the foreach loop written above 
+        //private static bool NameStartsWithA(Employee employee)
+        //{
+        //    return employee.Name.StartsWith("A");
+        //}
     }
 }
