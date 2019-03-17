@@ -19,6 +19,8 @@ namespace LINQfeatures
                 new Employee { Id = 3, Name = "Alex" }
             };
 
+            Console.WriteLine(developers.Count());
+
             foreach (var person in developers)
             {
                 Console.WriteLine(person.Name);
