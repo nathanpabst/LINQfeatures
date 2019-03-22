@@ -11,7 +11,7 @@ namespace LINQfeatures
             Func<int, int> square = x => x * x;
             Func<int, int, int> add = (x, y) => x + y;
 
-            Console.WriteLine(square(add(3,5)));
+            //Console.WriteLine(square(add(3,5)));
 
             IEnumerable<Employee> developers = new Employee[]
             {
@@ -29,7 +29,7 @@ namespace LINQfeatures
                                     .OrderBy(e => e.Name);
             foreach (var employee in query)
             {
-                Console.WriteLine(employee.Name);
+                //Console.WriteLine(employee.Name);
             }
 
             //QUERY SYNTAX using keywords
@@ -39,7 +39,7 @@ namespace LINQfeatures
                          select developer;
             foreach (var employee in query2)
             {
-                Console.WriteLine(employee.Name);
+                //Console.WriteLine(employee.Name);
             }
 
             // 1) calling NameStartsWithA ..NAMED method
@@ -69,7 +69,7 @@ namespace LINQfeatures
             foreach (var employee in developers.Where(e => e.Name.Length == 4)
                                                 .OrderBy(e => e.Name))
             {
-                Console.WriteLine(employee.Name);
+                //Console.WriteLine(employee.Name);
             }
 
             
