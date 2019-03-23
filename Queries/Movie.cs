@@ -17,8 +17,7 @@ namespace Queries
         {
             get
             {
-                //simulate an error condition..best practice would to be more specific
-                throw new Exception("Error!");
+                
                 Console.WriteLine($"Returning {_year} for {Title}");
                 return _year;
             }

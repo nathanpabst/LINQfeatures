@@ -10,6 +10,12 @@ namespace Queries
     {
         static void Main(string[] args)
         {
+
+            var numbers = MyLinq.Random().Where(n => n > 0.5).Take(10);
+            foreach (var number in numbers)
+            {
+                Console.WriteLine(number);
+            }
             var movies = new List<Movie>
             {
                 new Movie { Title = "The Dark Knight", Rating = 8.9f, Year = 2008},
@@ -18,23 +24,14 @@ namespace Queries
                 new Movie { Title = "Star Wars V", Rating = 8.7f, Year = 1980}
             };
 
-            var query = Enumerable.Empty<Movie>();
+            //var query = movies.Filter(m => m.Year > 2000)
+            //                    .OrderByDescending(m => m.Rating);
 
-            try
-            {
-                query = movies.Where(m => m.Year > 2000).ToList();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-            //using extension method syntax && implementing deferred execution...i.e. query does no real work until we force it to produce a result
-            //defining the query...
-            //var query = movies.Filter(m => m.Year > 2000).ToList();
-            //demonstating how deferred execution can be bad...looping through once to get the count and then through the same list again to get the titles
-            //adding ToList to the query creates a concrete list that reduces redundency
-            //Console.WriteLine(query.Count());
+            //USING QUERY SYNTAX
+            var query = from movie in movies
+                        where movie.Year > 2000
+                        orderby movie.Rating descending
+                        select movie; 
 
             //USING ENUMERATOR WHILE LOOP INSTEAD OF A FOREACH
             var enumerator = query.GetEnumerator();
