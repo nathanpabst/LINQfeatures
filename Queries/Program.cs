@@ -20,7 +20,10 @@ namespace Queries
 
             //using extension method syntax && implementing deferred execution...i.e. query does no real work until we force it to produce a result
             //defining the query...
-            var query = movies.Filter(m => m.Year > 2000);
+            var query = movies.Filter(m => m.Year > 2000).ToList();
+            //demonstating how deferred execution can be bad...looping through once to get the count and then through the same list again to get the titles
+            //adding ToList to the query creates a separate list that reduces redundency
+            Console.WriteLine(query.Count());
 
             //USING ENUMERATOR WHILE LOOP INSTEAD OF A FOREACH
             var enumerator = query.GetEnumerator();
