@@ -10,6 +10,12 @@ namespace Queries
     {
         static void Main(string[] args)
         {
+
+            var numbers = MyLinq.Random().Where(n => n > 0.5).Take(10);
+            foreach (var number in numbers)
+            {
+                Console.WriteLine(number);
+            }
             var movies = new List<Movie>
             {
                 new Movie { Title = "The Dark Knight", Rating = 8.9f, Year = 2008},
@@ -18,13 +24,27 @@ namespace Queries
                 new Movie { Title = "Star Wars V", Rating = 8.7f, Year = 1980}
             };
 
-            //using extension method syntax
-            var query = movies.Filter(m => m.Year > 2000);
+            //var query = movies.Filter(m => m.Year > 2000)
+            //                    .OrderByDescending(m => m.Rating);
 
-            foreach (var movie in query)
+            //USING QUERY SYNTAX
+            var query = from movie in movies
+                        where movie.Year > 2000
+                        orderby movie.Rating descending
+                        select movie; 
+
+            //USING ENUMERATOR WHILE LOOP INSTEAD OF A FOREACH
+            var enumerator = query.GetEnumerator();
+            while (enumerator.MoveNext())
             {
-                Console.WriteLine(movie.Title);
+                Console.WriteLine(enumerator.Current.Title);
             }
+
+            //executing the query via foreach loop
+            //foreach (var movie in query)
+            //{
+            //    Console.WriteLine(movie.Title);
+            //}
 
             Console.ReadLine();
             

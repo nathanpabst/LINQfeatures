@@ -10,7 +10,22 @@ namespace Queries
     {
         public string Title { get; set; }
         public float Rating { get; set; }
-        public int Year { get; set; }
+
+        //example of a property backed by a private field
+        int _year;
+        public int Year
+        {
+            get
+            {
+                
+                Console.WriteLine($"Returning {_year} for {Title}");
+                return _year;
+            }
+            set
+            {
+                _year = value;
+            }
+        }
 
     }
 }
