@@ -11,6 +11,7 @@ namespace Queries
         public string Title { get; set; }
         public float Rating { get; set; }
 
+        //example of a property backed by a private field
         int _year;
         public int Year
         {
